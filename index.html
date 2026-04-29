@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sintagmas · De 0 a PRO</title>
+
+<style>
+
+:root{
+--bg:#020617;
+--card:#111827;
+--soft:#1e293b;
+--accent:#38bdf8;
+--ok:#22c55e;
+--bad:#ef4444;
+--yellow:#facc15;
+--text:#e5e7eb;
+}
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:linear-gradient(180deg,#020617,#0f172a);
+color:var(--text);
+}
+
+.wrap{
+width:min(1200px,95%);
+margin:auto;
+padding:20px;
+}
+
+h1{
+text-align:center;
+font-size:3rem;
+margin-bottom:10px;
+}
+
+.sub{
+text-align:center;
+color:#cbd5e1;
+margin-bottom:35px;
+}
+
+.card{
+background:var(--card);
+padding:25px;
+border-radius:22px;
+margin-bottom:28px;
+border:1px solid #1f2937;
+box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+h2{
+margin-top:0;
+color:var(--accent);
+}
+
+.frase{
+font-size:1.4rem;
+margin:20px 0;
+line-height:1.8;
+}
+
+button{
+background:var(--accent);
+border:none;
+padding:12px 18px;
+border-radius:12px;
+cursor:pointer;
+font-weight:bold;
+margin:8px;
+transition:.3s;
+color:#0f172a;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+.correct{
+background:#14532d !important;
+color:white;
+}
+
+.wrong{
+background:#7f1d1d !important;
+color:white;
+}
+
+.feedback{
+margin-top:18px;
+padding:16px;
+border-radius:14px;
+display:none;
+font-weight:bold;
+line-height:1.7;
+}
+
+.ok{
+background:rgba(34,197,94,.15);
+border:1px solid #22c55e;
+color:#86efac;
+}
+
+.bad{
+background:rgba(239,68,68,.15);
+border:1px solid #ef4444;
+color:#fca5a5;
+}
+
+.progreso{
+width:100%;
+height:26px;
+background:#1e293b;
+border-radius:30px;
+overflow:hidden;
+margin-bottom:25px;
+}
+
+.bar{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#38bdf8,#22c55e);
+transition:.4s;
+}
+
+.stats{
+display:flex;
+gap:15px;
+justify-content:center;
+flex-wrap:wrap;
+margin-bottom:25px;
+}
+
+.stat{
+background:var(--soft);
+padding:12px 20px;
+border-radius:14px;
+font-weight:bold;
+}
+
+.nivel{
+display:inline-block;
+background:#0f172a;
+padding:8px 16px;
+border-radius:30px;
+margin-bottom:15px;
+color:#facc15;
+font-weight:bold;
+}
+
+.desplegable{
+display:none;
+background:var(--soft);
+padding:16px;
+border-radius:14px;
+margin-top:15px;
+line-height:1.8;
+}
+
+.final{
+background:linear-gradient(135deg,#0284c7,#2563eb);
+padding:30px;
+border-radius:24px;
+text-align:center;
+margin-top:40px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+<h1>🧠 Sintagmas · De 0 a Nivel PRO</h1>
+
+<p class="sub">
+Aprende como un videojuego: respuestas rápidas, feedback inmediato y niveles desbloqueables.
+</p>
+
+<div class="stats">
+
+<div class="stat">🏆 Puntos: <span id="puntos">0</span></div>
+
+<div class="stat">🔥 Racha: <span id="racha">0</span></div>
+
+<div class="stat">🎯 Aciertos: <span id="aciertos">0</span></div>
+
+</div>
+
+<div class="progreso">
+<div class="bar" id="barra"></div>
+</div>
+
+<!-- NIVEL 1 -->
+
+<div class="card">
+
+<div class="nivel">🌱 NIVEL 1 · Sustantivos</div>
+
+<h2>¿Qué palabra es un sustantivo?</h2>
+
+<div class="frase">
+La niña canta.
+</div>
+
+<button onclick="correcto(this,'f1','¡Perfecto! “niña” es un sustantivo.')">niña</button>
+
+<button onclick="incorrecto(this,'f1','👀 “canta” es un verbo porque expresa acción.')">canta</button>
+
+<button onclick="incorrecto(this,'f1','💡 “la” es un determinante.')">la</button>
+
+<div class="feedback" id="f1"></div>
+
+<button onclick="mostrar('m1')">📘 Ver modelo</button>
+
+<div class="desplegable" id="m1">
+
+🔵 Sustantivo = palabra que nombra personas, animales, objetos o lugares.<br><br>
+
+Ejemplos:
+<ul>
+<li>mesa</li>
+<li>niño</li>
+<li>gato</li>
+<li>ciudad</li>
+</ul>
+
+</div>
+
+</div>
+
+<!-- NIVEL 2 -->
+
+<div class="card">
+
+<div class="nivel">🟢 NIVEL 2 · Verbos</div>
+
+<h2>Encuentra el verbo</h2>
+
+<div class="frase">
+Los perros ladran mucho.
+</div>
+
+<button onclick="incorrecto(this,'f2','🟠 “perros” es un sustantivo.')">perros</button>
+
+<button onclick="correcto(this,'f2','⚡ ¡Correcto! “ladran” expresa acción.')">ladran</button>
+
+<button onclick="incorrecto(this,'f2','👀 “mucho” es un adverbio.')">mucho</button>
+
+<div class="feedback" id="f2"></div>
+
+</div>
+
+<!-- NIVEL 3 -->
+
+<div class="card">
+
+<div class="nivel">🟣 NIVEL 3 · Determinantes</div>
+
+<h2>¿Cuál es el determinante?</h2>
+
+<div class="frase">
+Aquellos jugadores entrenan.
+</div>
+
+<button onclick="correcto(this,'f3','🔥 Muy bien. “Aquellos” acompaña al sustantivo.')">Aquellos</button>
+
+<button onclick="incorrecto(this,'f3','👀 “jugadores” es un sustantivo.')">jugadores</button>
+
+<button onclick="incorrecto(this,'f3','🟠 “entrenan” es un verbo.')">entrenan</button>
+
+<div class="feedback" id="f3"></div>
+
+<button onclick="mostrar('m3')">📘 Ver ejemplos</button>
+
+<div class="desplegable" id="m3">
+
+Determinantes frecuentes:
+<ul>
+<li>el</li>
+<li>la</li>
+<li>mi</li>
+<li>aquellos</li>
+<li>unos</li>
+<li>esa</li>
+</ul>
+
+</div>
+
+</div>
+
+<!-- NIVEL 4 -->
+
+<div class="card">
+
+<div class="nivel">🟠 NIVEL 4 · Preposiciones</div>
+
+<h2>¿Qué palabra es una preposición?</h2>
+
+<div class="frase">
+Voy con mi hermano.
+</div>
+
+<button onclick="incorrecto(this,'f4','👀 “hermano” es un sustantivo.')">hermano</button>
+
+<button onclick="correcto(this,'f4','🏆 Exacto. “con” une palabras.')">con</button>
+
+<button onclick="incorrecto(this,'f4','💡 “mi” es un determinante.')">mi</button>
+
+<div class="feedback" id="f4"></div>
+
+</div>
+
+<!-- NIVEL 5 -->
+
+<div class="card">
+
+<div class="nivel">🟡 NIVEL 5 · Pronombres</div>
+
+<h2>¿Cuál es el pronombre?</h2>
+
+<div class="frase">
+Ella llegó tarde.
+</div>
+
+<button onclick="correcto(this,'f5','✨ “Ella” sustituye a un nombre.')">Ella</button>
+
+<button onclick="incorrecto(this,'f5','🟠 “llegó” es un verbo.')">llegó</button>
+
+<button onclick="incorrecto(this,'f5','👀 “tarde” es un adverbio.')">tarde</button>
+
+<div class="feedback" id="f5"></div>
+
+</div>
+
+<!-- NIVEL 6 -->
+
+<div class="card">
+
+<div class="nivel">🔴 NIVEL 6 · Adverbios</div>
+
+<h2>Encuentra el adverbio</h2>
+
+<div class="frase">
+Mi primo corre rápidamente.
+</div>
+
+<button onclick="incorrecto(this,'f6','👀 “primo” es un sustantivo.')">primo</button>
+
+<button onclick="incorrecto(this,'f6','🟠 “corre” es un verbo.')">corre</button>
+
+<button onclick="correcto(this,'f6','🚀 Perfecto. “rápidamente” modifica al verbo.')">rápidamente</button>
+
+<div class="feedback" id="f6"></div>
+
+</div>
+
+<!-- NIVEL 7 -->
+
+<div class="card">
+
+<div class="nivel">🌳 NIVEL 7 · Sintagmas</div>
+
+<h2>¿Qué grupo forma un sintagma?</h2>
+
+<div class="frase">
+Los alumnos del instituto estudian.
+</div>
+
+<button onclick="correcto(this,'f7','🔥 Muy bien. Ese grupo de palabras funciona unido.')">Los alumnos del instituto</button>
+
+<button onclick="incorrecto(this,'f7','👀 Eso solo es una parte.')">del instituto</button>
+
+<button onclick="incorrecto(this,'f7','🟠 Ahí aparece el verbo.')">estudian</button>
+
+<div class="feedback" id="f7"></div>
+
+<button onclick="mostrar('m7')">📘 Ruta mental</button>
+
+<div class="desplegable" id="m7">
+
+🧠 PASOS:
+<ol>
+<li>Busca primero el núcleo.</li>
+<li>Mira qué palabras lo acompañan.</li>
+<li>Comprueba si forman un grupo unido.</li>
+</ol>
+
+</div>
+
+</div>
+
+<!-- NIVEL PRO -->
+
+<div class="final">
+
+<h2>👑 NIVEL PRO</h2>
+
+<p>
+Analiza mentalmente:
+</p>
+
+<div class="frase">
+
+“Los jugadores del equipo entrenan muy duro en invierno.”
+
+</div>
+
+<p>
+🎯 Encuentra:
+</p>
+
+<p>
+✅ sustantivos<br>
+✅ verbo<br>
+✅ determinantes<br>
+✅ preposición<br>
+✅ adverbio<br>
+✅ sintagma completo
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+let puntos=0;
+let racha=0;
+let aciertos=0;
+
+function actualizar(){
+
+document.getElementById("puntos").innerHTML=puntos;
+document.getElementById("racha").innerHTML=racha;
+document.getElementById("aciertos").innerHTML=aciertos;
+
+let porcentaje=(puntos/7)*100;
+
+document.getElementById("barra").style.width=porcentaje+"%";
+
+}
+
+function correcto(btn,id,mensaje){
+
+let f=document.getElementById(id);
+
+f.style.display="block";
+f.className="feedback ok";
+f.innerHTML=mensaje;
+
+btn.classList.add("correct");
+
+puntos++;
+racha++;
+aciertos++;
+
+actualizar();
+
+}
+
+function incorrecto(btn,id,mensaje){
+
+let f=document.getElementById(id);
+
+f.style.display="block";
+f.className="feedback bad";
+f.innerHTML=mensaje;
+
+btn.classList.add("wrong");
+
+racha=0;
+
+actualizar();
+
+}
+
+function mostrar(id){
+
+let x=document.getElementById(id);
+
+if(x.style.display==="block"){
+x.style.display="none";
+}else{
+x.style.display="block";
+}
+
+}
+
+</script>
+
+</body>
+</html>
