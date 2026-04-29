@@ -30,7 +30,7 @@ color:var(--text);
 }
 
 .wrap{
-width:min(1200px,95%);
+width:min(1250px,95%);
 margin:auto;
 padding:20px;
 }
@@ -51,30 +51,47 @@ margin-bottom:35px;
 background:var(--card);
 padding:25px;
 border-radius:22px;
-margin-bottom:28px;
+margin-bottom:30px;
 border:1px solid #1f2937;
 box-shadow:0 10px 30px rgba(0,0,0,.35);
 }
 
 h2{
-margin-top:0;
 color:var(--accent);
+margin-top:0;
+}
+
+.nivel{
+display:inline-block;
+background:#0f172a;
+padding:8px 18px;
+border-radius:30px;
+color:#facc15;
+font-weight:bold;
+margin-bottom:20px;
+}
+
+.ej{
+background:#0f172a;
+padding:18px;
+border-radius:16px;
+margin-top:20px;
 }
 
 .frase{
-font-size:1.4rem;
-margin:20px 0;
-line-height:1.8;
+font-size:1.2rem;
+margin:15px 0;
+line-height:1.7;
 }
 
 button{
 background:var(--accent);
 border:none;
-padding:12px 18px;
+padding:10px 16px;
 border-radius:12px;
 cursor:pointer;
 font-weight:bold;
-margin:8px;
+margin:6px;
 transition:.3s;
 color:#0f172a;
 }
@@ -83,23 +100,13 @@ button:hover{
 transform:scale(1.05);
 }
 
-.correct{
-background:#14532d !important;
-color:white;
-}
-
-.wrong{
-background:#7f1d1d !important;
-color:white;
-}
-
 .feedback{
-margin-top:18px;
-padding:16px;
-border-radius:14px;
 display:none;
+margin-top:12px;
+padding:14px;
+border-radius:12px;
 font-weight:bold;
-line-height:1.7;
+line-height:1.6;
 }
 
 .ok{
@@ -145,25 +152,6 @@ border-radius:14px;
 font-weight:bold;
 }
 
-.nivel{
-display:inline-block;
-background:#0f172a;
-padding:8px 16px;
-border-radius:30px;
-margin-bottom:15px;
-color:#facc15;
-font-weight:bold;
-}
-
-.desplegable{
-display:none;
-background:var(--soft);
-padding:16px;
-border-radius:14px;
-margin-top:15px;
-line-height:1.8;
-}
-
 .final{
 background:linear-gradient(135deg,#0284c7,#2563eb);
 padding:30px;
@@ -182,62 +170,81 @@ margin-top:40px;
 <h1>🧠 Sintagmas · De 0 a Nivel PRO</h1>
 
 <p class="sub">
-Aprende como un videojuego: respuestas rápidas, feedback inmediato y niveles desbloqueables.
+Aprende paso a paso con feedback inmediato.
 </p>
 
 <div class="stats">
-
 <div class="stat">🏆 Puntos: <span id="puntos">0</span></div>
-
 <div class="stat">🔥 Racha: <span id="racha">0</span></div>
-
 <div class="stat">🎯 Aciertos: <span id="aciertos">0</span></div>
-
 </div>
 
 <div class="progreso">
 <div class="bar" id="barra"></div>
 </div>
 
-<!-- NIVEL 1 -->
+<!-- ================= SUSTANTIVOS ================= -->
 
 <div class="card">
 
 <div class="nivel">🌱 NIVEL 1 · Sustantivos</div>
 
-<h2>¿Qué palabra es un sustantivo?</h2>
+<h2>Encuentra el sustantivo</h2>
 
-<div class="frase">
-La niña canta.
-</div>
+<!-- 5 ejercicios -->
 
-<button onclick="correcto(this,'f1','¡Perfecto! “niña” es un sustantivo.')">niña</button>
+<div class="ej">
+<div class="frase">La niña canta.</div>
 
-<button onclick="incorrecto(this,'f1','👀 “canta” es un verbo porque expresa acción.')">canta</button>
-
-<button onclick="incorrecto(this,'f1','💡 “la” es un determinante.')">la</button>
+<button onclick="ok('f1','✅ “niña” nombra una persona.')">niña</button>
+<button onclick="bad('f1','👀 “canta” es un verbo.')">canta</button>
+<button onclick="bad('f1','💡 “la” es un determinante.')">la</button>
 
 <div class="feedback" id="f1"></div>
+</div>
 
-<button onclick="mostrar('m1')">📘 Ver modelo</button>
+<div class="ej">
+<div class="frase">Mi perro duerme.</div>
 
-<div class="desplegable" id="m1">
+<button onclick="bad('f2','👀 “mi” es un determinante.')">mi</button>
+<button onclick="ok('f2','🔥 “perro” es un sustantivo.')">perro</button>
+<button onclick="bad('f2','🟠 “duerme” es un verbo.')">duerme</button>
 
-🔵 Sustantivo = palabra que nombra personas, animales, objetos o lugares.<br><br>
+<div class="feedback" id="f2"></div>
+</div>
 
-Ejemplos:
-<ul>
-<li>mesa</li>
-<li>niño</li>
-<li>gato</li>
-<li>ciudad</li>
-</ul>
+<div class="ej">
+<div class="frase">Aquellos coches corren.</div>
 
+<button onclick="bad('f3','💡 “aquellos” acompaña al sustantivo.')">aquellos</button>
+<button onclick="ok('f3','🚗 “coches” es un sustantivo.')">coches</button>
+<button onclick="bad('f3','👀 “corren” es un verbo.')">corren</button>
+
+<div class="feedback" id="f3"></div>
+</div>
+
+<div class="ej">
+<div class="frase">La profesora explica.</div>
+
+<button onclick="ok('f4','✨ Correcto. “profesora” nombra una persona.')">profesora</button>
+<button onclick="bad('f4','👀 “explica” es un verbo.')">explica</button>
+
+<div class="feedback" id="f4"></div>
+</div>
+
+<div class="ej">
+<div class="frase">Los árboles crecen.</div>
+
+<button onclick="bad('f5','💡 “los” es un determinante.')">los</button>
+<button onclick="ok('f5','🌳 “árboles” es un sustantivo.')">árboles</button>
+<button onclick="bad('f5','👀 “crecen” es un verbo.')">crecen</button>
+
+<div class="feedback" id="f5"></div>
 </div>
 
 </div>
 
-<!-- NIVEL 2 -->
+<!-- ================= VERBOS ================= -->
 
 <div class="card">
 
@@ -245,160 +252,329 @@ Ejemplos:
 
 <h2>Encuentra el verbo</h2>
 
-<div class="frase">
-Los perros ladran mucho.
+<div class="ej">
+<div class="frase">Los perros ladran.</div>
+
+<button onclick="bad('f6','👀 “perros” es un sustantivo.')">perros</button>
+<button onclick="ok('f6','🔥 “ladran” expresa acción.')">ladran</button>
+
+<div class="feedback" id="f6"></div>
 </div>
 
-<button onclick="incorrecto(this,'f2','🟠 “perros” es un sustantivo.')">perros</button>
+<div class="ej">
+<div class="frase">Mi hermana estudia.</div>
 
-<button onclick="correcto(this,'f2','⚡ ¡Correcto! “ladran” expresa acción.')">ladran</button>
+<button onclick="bad('f7','💡 “hermana” es sustantivo.')">hermana</button>
+<button onclick="ok('f7','📘 “estudia” es verbo.')">estudia</button>
 
-<button onclick="incorrecto(this,'f2','👀 “mucho” es un adverbio.')">mucho</button>
+<div class="feedback" id="f7"></div>
+</div>
 
-<div class="feedback" id="f2"></div>
+<div class="ej">
+<div class="frase">Pedro corre rápido.</div>
+
+<button onclick="bad('f8','👀 “Pedro” es sustantivo.')">Pedro</button>
+<button onclick="ok('f8','⚡ “corre” es verbo.')">corre</button>
+<button onclick="bad('f8','🟠 “rápido” es adverbio.')">rápido</button>
+
+<div class="feedback" id="f8"></div>
+</div>
+
+<div class="ej">
+<div class="frase">Los alumnos trabajan.</div>
+
+<button onclick="ok('f9','🏆 “trabajan” expresa acción.')">trabajan</button>
+<button onclick="bad('f9','👀 “alumnos” es sustantivo.')">alumnos</button>
+
+<div class="feedback" id="f9"></div>
+</div>
+
+<div class="ej">
+<div class="frase">La niña sonríe.</div>
+
+<button onclick="ok('f10','✨ “sonríe” es verbo.')">sonríe</button>
+<button onclick="bad('f10','💡 “niña” es sustantivo.')">niña</button>
+
+<div class="feedback" id="f10"></div>
+</div>
 
 </div>
 
-<!-- NIVEL 3 -->
+<!-- ================= DETERMINANTES ================= -->
 
 <div class="card">
 
 <div class="nivel">🟣 NIVEL 3 · Determinantes</div>
 
-<h2>¿Cuál es el determinante?</h2>
+<h2>Encuentra el determinante</h2>
 
-<div class="frase">
-Aquellos jugadores entrenan.
+<div class="ej">
+<div class="frase">Aquellos jugadores entrenan.</div>
+
+<button onclick="ok('f11','🔥 “Aquellos” acompaña al sustantivo.')">Aquellos</button>
+<button onclick="bad('f11','👀 “jugadores” es sustantivo.')">jugadores</button>
+
+<div class="feedback" id="f11"></div>
 </div>
 
-<button onclick="correcto(this,'f3','🔥 Muy bien. “Aquellos” acompaña al sustantivo.')">Aquellos</button>
+<div class="ej">
+<div class="frase">Mi mochila pesa mucho.</div>
 
-<button onclick="incorrecto(this,'f3','👀 “jugadores” es un sustantivo.')">jugadores</button>
+<button onclick="ok('f12','🎒 “Mi” acompaña al sustantivo.')">Mi</button>
+<button onclick="bad('f12','👀 “mochila” es sustantivo.')">mochila</button>
 
-<button onclick="incorrecto(this,'f3','🟠 “entrenan” es un verbo.')">entrenan</button>
+<div class="feedback" id="f12"></div>
+</div>
 
-<div class="feedback" id="f3"></div>
+<div class="ej">
+<div class="frase">La casa es grande.</div>
 
-<button onclick="mostrar('m3')">📘 Ver ejemplos</button>
+<button onclick="ok('f13','🏠 “La” es determinante.')">La</button>
+<button onclick="bad('f13','👀 “casa” es sustantivo.')">casa</button>
 
-<div class="desplegable" id="m3">
+<div class="feedback" id="f13"></div>
+</div>
 
-Determinantes frecuentes:
-<ul>
-<li>el</li>
-<li>la</li>
-<li>mi</li>
-<li>aquellos</li>
-<li>unos</li>
-<li>esa</li>
-</ul>
+<div class="ej">
+<div class="frase">Esos libros son míos.</div>
 
+<button onclick="ok('f14','📚 “Esos” acompaña al sustantivo.')">Esos</button>
+<button onclick="bad('f14','👀 “libros” es sustantivo.')">libros</button>
+
+<div class="feedback" id="f14"></div>
+</div>
+
+<div class="ej">
+<div class="frase">Un coche pasó rápido.</div>
+
+<button onclick="ok('f15','🚗 “Un” es determinante.')">Un</button>
+<button onclick="bad('f15','👀 “coche” es sustantivo.')">coche</button>
+
+<div class="feedback" id="f15"></div>
 </div>
 
 </div>
 
-<!-- NIVEL 4 -->
+<!-- ================= SINTAGMA NOMINAL ================= -->
 
 <div class="card">
 
-<div class="nivel">🟠 NIVEL 4 · Preposiciones</div>
+<div class="nivel">🌳 Sintagma Nominal (SN)</div>
 
-<h2>¿Qué palabra es una preposición?</h2>
+<h2>Localiza el sintagma nominal</h2>
 
-<div class="frase">
-Voy con mi hermano.
+<!-- 7 ejercicios -->
+
+<div class="ej">
+<div class="frase">Los alumnos del instituto estudian.</div>
+
+<button onclick="ok('sn1','✅ Correcto. Todo el grupo gira alrededor de “alumnos”.')">Los alumnos del instituto</button>
+<button onclick="bad('sn1','👀 Eso es solo una parte.')">del instituto</button>
+
+<div class="feedback" id="sn1"></div>
 </div>
 
-<button onclick="incorrecto(this,'f4','👀 “hermano” es un sustantivo.')">hermano</button>
+<div class="ej">
+<div class="frase">Mi hermano pequeño juega.</div>
 
-<button onclick="correcto(this,'f4','🏆 Exacto. “con” une palabras.')">con</button>
+<button onclick="ok('sn2','🔥 Muy bien. El núcleo es “hermano”.')">Mi hermano pequeño</button>
+<button onclick="bad('sn2','👀 Ahí falta información.')">pequeño</button>
 
-<button onclick="incorrecto(this,'f4','💡 “mi” es un determinante.')">mi</button>
+<div class="feedback" id="sn2"></div>
+</div>
 
-<div class="feedback" id="f4"></div>
+<div class="ej">
+<div class="frase">Aquellos perros negros ladran.</div>
+
+<button onclick="ok('sn3','🐶 Correcto. Todo acompaña al núcleo “perros”.')">Aquellos perros negros</button>
+<button onclick="bad('sn3','👀 Eso solo es el núcleo.')">perros</button>
+
+<div class="feedback" id="sn3"></div>
+</div>
+
+<div class="ej">
+<div class="frase">La profesora de Lengua explica.</div>
+
+<button onclick="ok('sn4','📘 Correcto. El núcleo es “profesora”.')">La profesora de Lengua</button>
+<button onclick="bad('sn4','👀 Falta parte del grupo.')">profesora</button>
+
+<div class="feedback" id="sn4"></div>
+</div>
+
+<div class="ej">
+<div class="frase">Mis amigos del barrio corren.</div>
+
+<button onclick="ok('sn5','⚡ Perfecto.')">Mis amigos del barrio</button>
+<button onclick="bad('sn5','👀 Ahí solo aparece una parte.')">del barrio</button>
+
+<div class="feedback" id="sn5"></div>
+</div>
+
+<div class="ej">
+<div class="frase">Los coches rojos avanzan.</div>
+
+<button onclick="ok('sn6','🚗 Muy bien.')">Los coches rojos</button>
+<button onclick="bad('sn6','👀 Falta el determinante.')">coches rojos</button>
+
+<div class="feedback" id="sn6"></div>
+</div>
+
+<div class="ej">
+<div class="frase">Aquella niña sonríe.</div>
+
+<button onclick="ok('sn7','✨ Correcto.')">Aquella niña</button>
+<button onclick="bad('sn7','👀 Ahí solo aparece el núcleo.')">niña</button>
+
+<div class="feedback" id="sn7"></div>
+</div>
 
 </div>
 
-<!-- NIVEL 5 -->
+<!-- ================= SINTAGMA VERBAL ================= -->
 
 <div class="card">
 
-<div class="nivel">🟡 NIVEL 5 · Pronombres</div>
+<div class="nivel">🔥 Sintagma Verbal (SV)</div>
 
-<h2>¿Cuál es el pronombre?</h2>
+<h2>Localiza el sintagma verbal</h2>
 
-<div class="frase">
-Ella llegó tarde.
+<div class="ej">
+<div class="frase">La niña canta muy bien.</div>
+
+<button onclick="ok('sv1','🎵 Correcto. El núcleo es “canta”.')">canta muy bien</button>
+<button onclick="bad('sv1','👀 Ahí aparece el SN.')">La niña</button>
+
+<div class="feedback" id="sv1"></div>
 </div>
 
-<button onclick="correcto(this,'f5','✨ “Ella” sustituye a un nombre.')">Ella</button>
+<div class="ej">
+<div class="frase">Los alumnos estudian en silencio.</div>
 
-<button onclick="incorrecto(this,'f5','🟠 “llegó” es un verbo.')">llegó</button>
+<button onclick="ok('sv2','📘 Muy bien.')">estudian en silencio</button>
+<button onclick="bad('sv2','👀 Ahí no aparece el verbo.')">en silencio</button>
 
-<button onclick="incorrecto(this,'f5','👀 “tarde” es un adverbio.')">tarde</button>
+<div class="feedback" id="sv2"></div>
+</div>
 
-<div class="feedback" id="f5"></div>
+<div class="ej">
+<div class="frase">Mi perro duerme tranquilamente.</div>
+
+<button onclick="ok('sv3','🐶 Correcto.')">duerme tranquilamente</button>
+<button onclick="bad('sv3','👀 Ahí está el SN.')">Mi perro</button>
+
+<div class="feedback" id="sv3"></div>
+</div>
+
+<div class="ej">
+<div class="frase">Pedro corre mucho.</div>
+
+<button onclick="ok('sv4','⚡ Exacto.')">corre mucho</button>
+<button onclick="bad('sv4','👀 Falta el verbo.')">mucho</button>
+
+<div class="feedback" id="sv4"></div>
+</div>
+
+<div class="ej">
+<div class="frase">Los niños juegan en el parque.</div>
+
+<button onclick="ok('sv5','🏆 Muy bien.')">juegan en el parque</button>
+<button onclick="bad('sv5','👀 Ahí está el SN.')">Los niños</button>
+
+<div class="feedback" id="sv5"></div>
+</div>
+
+<div class="ej">
+<div class="frase">La profesora explica claramente.</div>
+
+<button onclick="ok('sv6','✨ Perfecto.')">explica claramente</button>
+<button onclick="bad('sv6','👀 Ahí falta el verbo.')">claramente</button>
+
+<div class="feedback" id="sv6"></div>
+</div>
+
+<div class="ej">
+<div class="frase">Los coches avanzan lentamente.</div>
+
+<button onclick="ok('sv7','🚗 Correcto.')">avanzan lentamente</button>
+<button onclick="bad('sv7','👀 Ahí aparece el SN.')">Los coches</button>
+
+<div class="feedback" id="sv7"></div>
+</div>
 
 </div>
 
-<!-- NIVEL 6 -->
+<!-- ================= SINTAGMA PREPOSICIONAL ================= -->
 
 <div class="card">
 
-<div class="nivel">🔴 NIVEL 6 · Adverbios</div>
+<div class="nivel">🟠 Sintagma Preposicional (SPrep)</div>
 
-<h2>Encuentra el adverbio</h2>
+<h2>Encuentra el sintagma preposicional</h2>
 
-<div class="frase">
-Mi primo corre rápidamente.
+<div class="ej">
+<div class="frase">Voy con mi hermano.</div>
+
+<button onclick="ok('sp1','🔥 Correcto. Empieza por preposición.')">con mi hermano</button>
+<button onclick="bad('sp1','👀 Ahí falta la preposición.')">mi hermano</button>
+
+<div class="feedback" id="sp1"></div>
 </div>
 
-<button onclick="incorrecto(this,'f6','👀 “primo” es un sustantivo.')">primo</button>
+<div class="ej">
+<div class="frase">La mochila de Marta pesa mucho.</div>
 
-<button onclick="incorrecto(this,'f6','🟠 “corre” es un verbo.')">corre</button>
+<button onclick="ok('sp2','🎒 Muy bien.')">de Marta</button>
+<button onclick="bad('sp2','👀 Eso es solo el núcleo.')">Marta</button>
 
-<button onclick="correcto(this,'f6','🚀 Perfecto. “rápidamente” modifica al verbo.')">rápidamente</button>
-
-<div class="feedback" id="f6"></div>
-
+<div class="feedback" id="sp2"></div>
 </div>
 
-<!-- NIVEL 7 -->
+<div class="ej">
+<div class="frase">Salimos para el parque.</div>
 
-<div class="card">
+<button onclick="ok('sp3','🌳 Correcto.')">para el parque</button>
+<button onclick="bad('sp3','👀 Ahí falta la preposición.')">el parque</button>
 
-<div class="nivel">🌳 NIVEL 7 · Sintagmas</div>
-
-<h2>¿Qué grupo forma un sintagma?</h2>
-
-<div class="frase">
-Los alumnos del instituto estudian.
+<div class="feedback" id="sp3"></div>
 </div>
 
-<button onclick="correcto(this,'f7','🔥 Muy bien. Ese grupo de palabras funciona unido.')">Los alumnos del instituto</button>
+<div class="ej">
+<div class="frase">Estudia en su habitación.</div>
 
-<button onclick="incorrecto(this,'f7','👀 Eso solo es una parte.')">del instituto</button>
+<button onclick="ok('sp4','📘 Exacto.')">en su habitación</button>
+<button onclick="bad('sp4','👀 Falta el enlace.')">su habitación</button>
 
-<button onclick="incorrecto(this,'f7','🟠 Ahí aparece el verbo.')">estudian</button>
+<div class="feedback" id="sp4"></div>
+</div>
 
-<div class="feedback" id="f7"></div>
+<div class="ej">
+<div class="frase">Llegó a la estación.</div>
 
-<button onclick="mostrar('m7')">📘 Ruta mental</button>
+<button onclick="ok('sp5','🚉 Muy bien.')">a la estación</button>
+<button onclick="bad('sp5','👀 Ahí falta la preposición.')">la estación</button>
 
-<div class="desplegable" id="m7">
+<div class="feedback" id="sp5"></div>
+</div>
 
-🧠 PASOS:
-<ol>
-<li>Busca primero el núcleo.</li>
-<li>Mira qué palabras lo acompañan.</li>
-<li>Comprueba si forman un grupo unido.</li>
-</ol>
+<div class="ej">
+<div class="frase">Habló sobre el examen.</div>
 
+<button onclick="ok('sp6','🧠 Correcto.')">sobre el examen</button>
+<button onclick="bad('sp6','👀 Ahí solo aparece el término.')">el examen</button>
+
+<div class="feedback" id="sp6"></div>
+</div>
+
+<div class="ej">
+<div class="frase">Caminó hacia la salida.</div>
+
+<button onclick="ok('sp7','🚪 Perfecto.')">hacia la salida</button>
+<button onclick="bad('sp7','👀 Falta la preposición.')">la salida</button>
+
+<div class="feedback" id="sp7"></div>
 </div>
 
 </div>
-
-<!-- NIVEL PRO -->
 
 <div class="final">
 
@@ -408,11 +584,9 @@ Los alumnos del instituto estudian.
 Analiza mentalmente:
 </p>
 
-<div class="frase">
-
-“Los jugadores del equipo entrenan muy duro en invierno.”
-
-</div>
+<p style="font-size:1.3rem;">
+“Los alumnos del instituto trabajan muy tranquilos en la biblioteca.”
+</p>
 
 <p>
 🎯 Encuentra:
@@ -423,8 +597,10 @@ Analiza mentalmente:
 ✅ verbo<br>
 ✅ determinantes<br>
 ✅ preposición<br>
-✅ adverbio<br>
-✅ sintagma completo
+✅ sintagma nominal<br>
+✅ sintagma verbal<br>
+✅ sintagma preposicional<br>
+✅ núcleos
 </p>
 
 </div>
@@ -443,21 +619,19 @@ document.getElementById("puntos").innerHTML=puntos;
 document.getElementById("racha").innerHTML=racha;
 document.getElementById("aciertos").innerHTML=aciertos;
 
-let porcentaje=(puntos/7)*100;
+let porcentaje=(puntos/36)*100;
 
 document.getElementById("barra").style.width=porcentaje+"%";
 
 }
 
-function correcto(btn,id,mensaje){
+function ok(id,mensaje){
 
 let f=document.getElementById(id);
 
 f.style.display="block";
 f.className="feedback ok";
 f.innerHTML=mensaje;
-
-btn.classList.add("correct");
 
 puntos++;
 racha++;
@@ -467,7 +641,7 @@ actualizar();
 
 }
 
-function incorrecto(btn,id,mensaje){
+function bad(id,mensaje){
 
 let f=document.getElementById(id);
 
@@ -475,23 +649,9 @@ f.style.display="block";
 f.className="feedback bad";
 f.innerHTML=mensaje;
 
-btn.classList.add("wrong");
-
 racha=0;
 
 actualizar();
-
-}
-
-function mostrar(id){
-
-let x=document.getElementById(id);
-
-if(x.style.display==="block"){
-x.style.display="none";
-}else{
-x.style.display="block";
-}
 
 }
 
